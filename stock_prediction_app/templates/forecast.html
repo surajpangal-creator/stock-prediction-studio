@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Forecast for {{ ticker }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-10 mx-auto">
+        <a href="{{ url_for('stock_prediction.index') }}" class="btn btn-link ps-0 mb-3">&larr; Back to builder</a>
+
+        <header class="card shadow-sm mb-4">
+            <div class="card-body d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3">
+                <div>
+                    <h1 class="display-6 fw-semibold text-accent mb-2">{{ ticker }} Forecast</h1>
+                    <p class="mb-0 badge-meta">
+                        Model: <span class="text-emphasis text-capitalize">{{ model }}</span>
+                        <span class="mx-2">&bull;</span>
+                        Target: <span class="text-emphasis text-capitalize">{{ target }}</span>
+                        <span class="mx-2">&bull;</span>
+                        Horizon: <span class="text-emphasis">{{ horizon }} days</span>
+                    </p>
+                </div>
+                <div class="d-flex gap-3 flex-wrap">
+                    <div class="stat-pill">
+                        <span class="label">Last Actual</span>
+                        <span class="value">{{ latest_actual | round(2) }}</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="label">Next Forecast</span>
+                        <span class="value">{{ next_forecast | round(2) }}</span>
+                        <span class="delta {{ 'up' if delta_next >= 0 else 'down' }}">
+                            {{ '+' if delta_next >= 0 else '' }}{{ delta_next | round(2) }}
+                            {% if delta_pct is not none %}
+                                (<span>{{ '+' if delta_pct >= 0 else '' }}{{ delta_pct | round(2) }}%</span>)
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="label">Horizon Forecast</span>
+                        <span class="value">{{ forecast_end | round(2) }}</span>
+                    </div>
+                    <span class="badge badge-interval align-self-center">{{ interval }}</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header">
+                        <h2 class="h6 text-uppercase tracking-wide mb-0">Performance Metrics</h2>
+                    </div>
+                    <div class="card-body">
+                        {% if result.metrics %}
+                            <ul class="list-group list-group-flush">
+                                {% for name, value in result.metrics.items() %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        {{ name }}
+                                        <span class="fw-semibold">{{ value }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted mb-0">Metrics unavailable. Try a longer history range.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header">
+                        <h2 class="h6 text-uppercase tracking-wide mb-0">Forecast Table</h2>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-sm table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Forecast</th>
+                                    {% if 'lower' in result.forecast.columns %}
+                                        <th scope="col">Lower</th>
+                                        <th scope="col">Upper</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for index, row in result.forecast.iterrows() %}
+                                    <tr>
+                                        <td>{{ index.strftime('%Y-%m-%d') }}</td>
+                                        <td>{{ '%.4f'|format(row['forecast']) }}</td>
+                                        {% if 'lower' in result.forecast.columns %}
+                                            <td>{{ '%.4f'|format(row['lower']) }}</td>
+                                            <td>{{ '%.4f'|format(row['upper']) }}</td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

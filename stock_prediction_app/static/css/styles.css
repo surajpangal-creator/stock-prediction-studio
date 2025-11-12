@@ -1,0 +1,219 @@
+:root {
+    --bg-main: #0b0f1f;
+    --bg-panel: #151b2f;
+    --bg-panel-alt: #1c2338;
+    --border-soft: rgba(255, 255, 255, 0.05);
+    --text-primary: #e6ebff;
+    --text-muted: #9aa3c1;
+    --accent: #7f8cff;
+    --accent-strong: #b48bff;
+    --success: #3ddc97;
+    --danger: #ff6b6b;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.navbar {
+    background: linear-gradient(90deg, rgba(42, 53, 84, 0.9), rgba(29, 39, 66, 0.9));
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-primary) !important;
+}
+
+.card {
+    border-radius: 1rem;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    color: var(--text-primary);
+    box-shadow: 0 18px 35px rgba(5, 10, 25, 0.45);
+}
+
+.card-header {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom: 1px solid var(--border-soft);
+    background-color: var(--bg-panel-alt);
+}
+
+.card-header h2 {
+    color: var(--text-muted);
+}
+
+.badge-meta {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.text-emphasis {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.text-accent {
+    color: var(--accent);
+}
+
+.stat-pill {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--bg-panel-alt);
+    border-radius: 0.85rem;
+    border: 1px solid var(--border-soft);
+    min-width: 160px;
+}
+
+.stat-pill .label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.stat-pill .value {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stat-pill .delta {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.stat-pill .delta.up {
+    color: var(--success);
+}
+
+.stat-pill .delta.down {
+    color: var(--danger);
+}
+
+.badge-interval {
+    align-self: stretch;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.85rem;
+    background-color: rgba(127, 140, 255, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(127, 140, 255, 0.25);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.form-label {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+}
+
+.form-control,
+.form-select {
+    background-color: var(--bg-panel-alt);
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-soft);
+    color: var(--text-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+    color: var(--text-primary);
+    background-color: var(--bg-panel-alt);
+    border-color: rgba(127, 140, 255, 0.55);
+    box-shadow: 0 0 0 0.25rem rgba(127, 140, 255, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.65rem 1.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+}
+
+.list-group-flush .list-group-item {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-soft);
+}
+
+.table {
+    color: var(--text-primary);
+    --bs-table-bg: transparent;
+    --bs-table-hover-color: var(--text-primary);
+    --bs-table-hover-bg: rgba(127, 140, 255, 0.07);
+}
+
+.table thead th {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-soft);
+    background-color: var(--bg-panel-alt);
+}
+
+.table tbody tr {
+    background-color: rgba(21, 27, 47, 0.95);
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: rgba(28, 35, 56, 0.95);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(127, 140, 255, 0.08);
+}
+
+.table td,
+.table th {
+    color: var(--text-primary);
+    border-color: var(--border-soft);
+    background-color: transparent;
+}
+
+.alert {
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-soft);
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+}
+
+.tracking-wide {
+    letter-spacing: 0.12em;
+}
+
+.list-group-item span.fw-semibold {
+    color: var(--accent);
+}
+
+.badge.bg-primary {
+    background-color: rgba(127, 140, 255, 0.28) !important;
+    color: var(--accent);
+}
+
+.form-text {
+    color: var(--text-muted);
+}
+

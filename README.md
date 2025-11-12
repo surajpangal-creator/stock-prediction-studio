@@ -4,6 +4,41 @@ This Python GUI application retrieves and displays NFL futures data from the Dra
 
 ---
 
+## Stock Prediction Web App (New)
+
+In addition to the DraftKings explorer, the repository now includes a Flask-powered website for forecasting stock prices or volatility with data sourced from the Yahoo Finance API.
+
+### Quick Start
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 stock_prediction_app/app.py
+```
+
+Then open your browser to `http://127.0.0.1:5000/` to access the dashboard.
+
+### Features
+
+- Choose a ticker, sampling interval, target (close price or rolling volatility), and forecast horizon.
+- Run forecasts with either:
+  - **Prophet** for probabilistic decomposable trend modeling.
+  - **LSTM** neural networks for deep learning-based predictions.
+- Review dark-mode summary dashboards featuring forecast tables, deltas, and evaluation metrics.
+- Download-free experience powered by `yfinance` data.
+
+### Deploy to Render (Demo Hosting)
+
+1. Push this repository to a Git host (GitHub, GitLab, etc.).
+2. The included `render.yaml` configures a Free-tier Python web service.
+3. On [Render](https://render.com), create a **New Web Service** connected to your repo and use the defaults from `render.yaml`:
+   - Build command: `pip install -r requirements.txt`
+   - Start command: `gunicorn stock_prediction_app.app:app`
+4. Deploy—Render will build the container and provide a public URL you can share for demos.
+
+Prophet forecasting requires `cmdstanpy` the first time it runs; the dependency is installed automatically via `pip`, but the first model fit may take a minute while the Stan backend is compiled.
+
+---
+
 ## How to Run
 
 There are three ways to use this application, depending on your preference.

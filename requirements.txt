@@ -1,2 +1,9 @@
-pandas
-curl_cffi
+pandas>=2.3
+curl_cffi>=0.13
+Flask>=2.3
+yfinance>=0.2
+prophet>=1.2
+scikit-learn>=1.3
+tensorflow-macos>=2.16.0; sys_platform == "darwin" and platform_machine == "arm64"
+tensorflow>=2.16.0; not (sys_platform == "darwin" and platform_machine == "arm64")
+gunicorn>=22.0
