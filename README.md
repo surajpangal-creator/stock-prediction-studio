@@ -1,12 +1,6 @@
-# DraftKings NFL API Data Viewer
-
-This Python GUI application retrieves and displays NFL futures data from the DraftKings API. It is designed to help users easily extract and organize betting market information, such as Regular Season Wins, Awards, Player Props, and more.
-
----
-
 ## Stock Prediction Web App (New)
 
-In addition to the DraftKings explorer, the repository now includes a Flask-powered website for forecasting stock prices or volatility with data sourced from the Yahoo Finance API.
+The repository now includes a Flask-powered website for forecasting stock prices or volatility with data sourced from the Yahoo Finance API.
 
 ### Quick Start
 
